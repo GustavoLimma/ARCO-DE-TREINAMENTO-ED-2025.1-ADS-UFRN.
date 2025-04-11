@@ -1,41 +1,19 @@
-import Pilha from "../src/Pilha";
+import Q2 from "../src/Q2";
 
-
-let p;
+let q2;
 
 beforeEach(() => {
-    p = new Pilha();
+    q2 = new Q2(6);
 })
 
-test("Se a pilha acabou de ser criada, ela deve estar vazia.", () => {
-    expect(p.isEmpty()).toBe(true);
-})
+test("Empilha e desempilha corretamente na pilha A", () => {
+    q2.empilha_A(1);
+    q2.empilha_A(2);
+    expect(q2.desempilha_A()).toBe(2);
+});
 
-test("Se eu inserir um elemento, a pilha não pode estar mais vazia.", () => {
-    p.push(1);
-    expect(p.isEmpty()).toBe(false);
-    expect(p.top()).toBe(1);
-})
-
-test("Se eu inserir 5 elementos a pilha vai está cheia", () => {
-    p.push(1);
-    p.push(2);
-    p.push(3);
-    p.push(4);
-    p.push(5);
-    expect(p.isFull()).toBe(true);
-    expect(p.isEmpty()).toBe(false);
-    expect(p.top()).toBe(5);
-    expect(p.length()).toBe(5);
-})
-test("Quem está no topo?", () => {
-    p.push(1);
-    p.push(2);
-    p.push(3);
-    p.pop();
-    p.pop();
-    expect(p.top()).toBe(1);
-    p.pop();
-    expect(p.isEmpty()).toBe(true);
-    expect(p.length()).toBe(0);
-})
+test("Empilha e desempilha corretamente na pilha B", () => {
+    q2.empilha_B(9);
+    q2.empilha_B(8);
+    expect(q2.desempilha_B()).toBe(8);
+});

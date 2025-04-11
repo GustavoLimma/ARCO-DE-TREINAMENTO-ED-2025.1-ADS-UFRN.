@@ -3,24 +3,19 @@
 import Pilha from "./Pilha";
 
 class Q4 {
-    constructor() {
-        this.pilha_bin = new Pilha();
-    }
+    converter(num) {
+        if (num === 0) return "0";
 
-    converter(decimal) {
-        if (decimal === 0) {
-            this.pilha_bin.push(0);
-        } else {
-            while (decimal > 0) {
-                let resto = decimal % 2;
-                this.pilha_bin.push(resto);
-                decimal = Math.floor(decimal / 2);
-            }
+        const pilha = new Pilha(32); 
+        let binario = "";
+
+        while (num > 0) {
+            pilha.push(num % 2);
+            num = Math.floor(num / 2);
         }
 
-        let binario = "";
-        while (!this.pilha_bin.isEmpty()) {
-            binario += this.pilha_bin.pop();
+        while (!pilha.isEmpty()) {
+            binario += pilha.pop();
         }
 
         return binario;

@@ -10,54 +10,32 @@ iii. As funções empilhaA, empilhaB, desempilhaA e desempilhaB. Só deve ser
 emitida uma mensagem de pilha cheia se todas as posições do vetor estiverem ocupadas.*/
 
 class Q2 {
-
-    constructor(tamanho){
-
-        const tamanho_topo_A = 0;
-        const tamanho_topo_B = tamanho;
-
-        this.topoA = tamanho_topo_A;
-        this.topoB = tamanho_topo_B;
-
-        this.vetor = new Array(tamanho);
+    constructor(tamanho) {
+        this.vetor = new Array(tamanho).fill(null);
+        this.topoA = 0;
+        this.topoB = tamanho - 1;
+        this.tamanho = tamanho;
     }
 
-    e_vazia_A() {
-        return this.topoA === 0;
+    empilha_A(valor) {
+        if (this.topoA > this.topoB) throw new Error("Overflow");
+        this.vetor[this.topoA++] = valor;
     }
 
-    e_vazia_B(){
-        return this.topoB === this.vetor.length;
+    desempilha_A() {
+        if (this.topoA === 0) throw new Error("Underflow");
+        return this.vetor[--this.topoA];
     }
 
-    empilha_A(elemento){
-        return this.topoA +1 === this.topoB
-            
-        this.vetor[this.topoA] = elemento;
-        this.topoA ++;
+    empilha_B(valor) {
+        if (this.topoA > this.topoB) throw new Error("Overflow");
+        this.vetor[this.topoB--] = valor;
     }
 
-    empilha_B(elemento){
-        return this.topoB -1 === this.topoA
-            
-        this.vetor[this.topoB] = elemento;
-        this.topoB --;
+    desempilha_B() {
+        if (this.topoB === this.tamanho - 1) throw new Error("Underflow");
+        return this.vetor[++this.topoB];
     }
-
-    desempilha_A(){
-        return this.topoA === 0;
-
-        this.vetor[this.topoA] === null;
-        this.topoA --;
-    }
-
-    desempilha_B(){
-        return this.topoB === tamanho;
-
-        this.vetor[this.topoB] === null;
-        this.topoB ++;
-    }
-
 }
 
 export default Q2;

@@ -3,42 +3,22 @@ em um algoritmo que permite imprimir uma palavra de forma invertida. Por exemplo
 deve ser impresso IXACABA. Utilizando uma pilha e suas operações base, desenvolva a função
 inverte que recebe uma String e, utilizando as funções push e pop da pilha, retorne a palavra de
 forma invertida. */
+import Pilha from "./Pilha";
 
-class Q1{
-  
-    constructor(){
-      this.itens = [];
+class Q1 {
+    inverter(palavra) {
+        const pilha = new Pilha(palavra.length);
+        for (let letra of palavra) {
+            pilha.push(letra);
+        }
+
+        let invertida = "";
+        while (!pilha.isEmpty()) {
+            invertida += pilha.pop();
+        }
+
+        return invertida;
     }
-    
-    push(elemento){
-      this.itens.push(elemento);
-    }
-    
-    pop(){
-      return this.itens.pop();
-    }
-    
-    isEmpyt(){
-      return this.itens.length === 0;
-    }
-  } 
-  
-  function inverter(palavra){
-    
-    let pilha = new Pilha();
-    let resu = "";
-    
-    for (let letra of palavra){
-      pilha.push(letra);
-    }
-    
-    while(!pilha.isEmpyt()){
-      resu += pilha.pop()
-    }
-    
-    return resu;
-  }
-  
-  console.log(inverter("abacaxi"));
+}
 
 export default Q1;

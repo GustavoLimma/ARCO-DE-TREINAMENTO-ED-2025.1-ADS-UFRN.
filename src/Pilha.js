@@ -36,7 +36,10 @@ class Pilha {
         return this.length() === this.size;
     }
 
-    toString() { }
+    toString() {
+        return this.dados.slice(0, this.topo).join(", ");
+    }
+
     clear() {
         this.topo = 0;
     }

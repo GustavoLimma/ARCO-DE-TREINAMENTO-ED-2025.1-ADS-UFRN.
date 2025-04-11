@@ -17,3 +17,53 @@ a+b*c-d abc*+d-
 a*b-(c-d)+e ab*cd-e+
 */
 
+import Pilha from "../../Pilha.js";
+
+// Mapa de precedência dos operadores
+const operadores = new Map([
+  ["+", 1],
+  ["-", 1],
+  ["*", 2],
+  ["/", 2],
+]);
+
+const infixaParaPosfixa = (expressao) => {
+  const pilha = new Pilha(20);
+  let saida = "";
+
+  for (const token of expressao) {
+    if (token === " ") continue;
+
+    if (/[a-zA-Z0-9]/.test(token)) {
+      saida += token;
+    } else if (token === "(") {
+      pilha.push(token);
+    } else if (token === ")") {
+      while (!pilha.isEmpty() && pilha.top() !== "(") {
+        saida += pilha.top();
+        pilha.pop();
+      }
+      pilha.pop(); // remove '('
+    } else if (operadores.has(token)) {
+      while (
+        !pilha.isEmpty() &&
+        pilha.top() !== "(" &&
+        operadores.has(pilha.top()) &&
+        operadores.get(token) <= operadores.get(pilha.top())
+      ) {
+        saida += pilha.top();
+        pilha.pop();
+      }
+      pilha.push(token);
+    }
+  }
+
+  while (!pilha.isEmpty()) {
+    saida += pilha.top();
+    pilha.pop();
+  }
+
+  return saida;
+};
+
+export default infixaParaPosfixa;
